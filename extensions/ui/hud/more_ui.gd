@@ -72,7 +72,7 @@ var max_trees: int
 		
 func _ready()->void:
 	_more_ui_load_data()
-	var MoreUIConfigInterface = get_node("/root/ModLoader/MincedMeatMole-MoreUI/MoreUIConfigInterface")
+	var MoreUIConfigInterface = get_node("/root/ModLoader/Mooncake-MoreUI2/MoreUIConfigInterface")
 	MoreUIConfigInterface.connect("more_ui_setting_changed", self, "_on_more_ui_setting_changed")
 	if not "whats_new_mode_enabled" in more_ui_save_data:
 		more_ui_save_data.whats_new_mode_enabled = true
@@ -88,7 +88,7 @@ func _ready()->void:
 	_show_trees_enabled = more_ui_save_data.trees_enabled
 	_revamped_icons = more_ui_save_data.revamped_icons
 
-	more_ui_container = preload("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/more_ui.tscn").instance()
+	more_ui_container = preload("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/more_ui.tscn").instance()
 	moreui_hud.margin_bottom = 0
 	moreui_hud.anchor_bottom = 1
 	moreui_hud.call_deferred("add_child", more_ui_container)
@@ -403,22 +403,22 @@ func _set_revamped_icons(value:bool):
 			if monoHarvesting != null:
 				harvesting_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoHarvesting		
 		else:
-			max_hp_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_max_hp.png")
-			hp_regen_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_hp_regeneration.png")
-			lifesteal_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_lifesteal.png")
-			damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_percent_damage.png")
-			melee_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_melee_damage.png")
-			ranged_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_ranged_damage.png")
-			elemental_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_elemental_damage.png")
-			attack_speed_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_attack_speed.png")
-			crit_chance_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_crit_chance.png")
-			engineering_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_engineering.png")
-			range_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_range.png")
-			armor_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_armor.png")
-			dodge_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_dodge.png")
-			speed_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_speed.png")
-			luck_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_luck.png")
-			harvesting_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_harvesting.png")
+			max_hp_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_max_hp.png")
+			hp_regen_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_hp_regeneration.png")
+			lifesteal_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_lifesteal.png")
+			damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_percent_damage.png")
+			melee_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_melee_damage.png")
+			ranged_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_ranged_damage.png")
+			elemental_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_elemental_damage.png")
+			attack_speed_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_attack_speed.png")
+			crit_chance_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_crit_chance.png")
+			engineering_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_engineering.png")
+			range_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_range.png")
+			armor_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_armor.png")
+			dodge_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_dodge.png")
+			speed_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_speed.png")
+			luck_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_luck.png")
+			harvesting_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_harvesting.png")
 			
 
 func _toggle_control_visbility(onoff:bool):

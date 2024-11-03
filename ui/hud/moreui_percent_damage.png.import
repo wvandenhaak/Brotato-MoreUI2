@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/moreui_percent_damage.png-fab66ea98ec4afce8954829043e7be37.stex"
+path="res://.import/moreui_percent_damage.png-d0339a4ac2d098ad7115914c13afa418.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_percent_damage.png"
-dest_files=[ "res://.import/moreui_percent_damage.png-fab66ea98ec4afce8954829043e7be37.stex" ]
+source_file="res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_percent_damage.png"
+dest_files=[ "res://.import/moreui_percent_damage.png-d0339a4ac2d098ad7115914c13afa418.stex" ]
 
 [params]
 

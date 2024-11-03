@@ -5,10 +5,10 @@ type="Translation"
 
 [deps]
 
-files=[ "res://mods-unpacked/MincedMeatMole-MoreUI/translations/moreui_translations.fr.translation", "res://mods-unpacked/MincedMeatMole-MoreUI/translations/moreui_translations.en.translation", "res://mods-unpacked/MincedMeatMole-MoreUI/translations/moreui_translations.de.translation" ]
+files=[ "res://mods-unpacked/Mooncake-MoreUI2/translations/moreui_translations.fr.translation", "res://mods-unpacked/Mooncake-MoreUI2/translations/moreui_translations.en.translation", "res://mods-unpacked/Mooncake-MoreUI2/translations/moreui_translations.de.translation" ]
 
-source_file="res://mods-unpacked/MincedMeatMole-MoreUI/translations/moreui_translations.csv"
-dest_files=[ "res://mods-unpacked/MincedMeatMole-MoreUI/translations/moreui_translations.fr.translation", "res://mods-unpacked/MincedMeatMole-MoreUI/translations/moreui_translations.en.translation", "res://mods-unpacked/MincedMeatMole-MoreUI/translations/moreui_translations.de.translation" ]
+source_file="res://mods-unpacked/Mooncake-MoreUI2/translations/moreui_translations.csv"
+dest_files=[ "res://mods-unpacked/Mooncake-MoreUI2/translations/moreui_translations.fr.translation", "res://mods-unpacked/Mooncake-MoreUI2/translations/moreui_translations.en.translation", "res://mods-unpacked/Mooncake-MoreUI2/translations/moreui_translations.de.translation" ]
 
 [params]
 

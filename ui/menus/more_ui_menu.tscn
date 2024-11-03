@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://resources/themes/base_theme.tres" type="Theme" id=1]
-[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/extensions/ui/menus/pages/menu_more_ui_options.gd" type="Script" id=2]
+[ext_resource path="res://mods-unpacked/Mooncake-MoreUI2/extensions/ui/menus/pages/menu_more_ui_options.gd" type="Script" id=2]
 [ext_resource path="res://ui/menus/global/my_menu_button.gd" type="Script" id=3]
 
 [node name="MenuMoreUIOptions" type="VBoxContainer"]
