@@ -149,14 +149,14 @@ func _ready()->void:
 	_more_ui_timer.set_one_shot(false) # Make sure it loops
 	_more_ui_timer.set_wait_time(0.5)
 	_more_ui_timer.start()
+		
+	# Todo: Build in support for games with multiple players?
+	var player_index = 0; # First player
 	
 	if (_whats_new_mode_enabled):
 		_toggle_control_visbility(false)	
 	if (_whats_new_mode_enabled || _wave_increase_enabled):
 		var t = Timer.new()
-		
-		# Todo: Build in support for games with multiple players?
-		var player_index = 0; # First player
 		
 		t.set_wait_time(.2)
 		t.set_one_shot(true)
@@ -184,8 +184,12 @@ func _ready()->void:
 	_update_stats_ui()
 	
 	var possible_chances = ceil(wave_timer.wait_time / 10) - 1
-	var min_nb = (1 + RunData.effects["trees"])
-	var max_nb = (2 + RunData.effects["trees"])
+	
+	var player_effect_trees =  RunData.get_player_effect('trees', player_index);
+
+	var min_nb = (1 + player_effect_trees)
+	var max_nb = (2 + player_effect_trees)
+
 	for i in possible_chances:
 		var min_total_chance:float = min_nb * 0.33
 		var max_total_chance:float = max_nb * 0.33
