@@ -20,3 +20,24 @@ The Mod is now compatible with Monos' Revamped Icons - Credit for the Icons goes
 
 ## Steam
 This package is available in the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3359801812).
+
+### Publishing / Compilation
+This mod follows the publishment steps for a ZIP-file mod from this [Steam Guide](https://steamcommunity.com/sharedfiles/filedetails/?id=2931079751).
+
+One of the most important things is creating the required directory structure. 
+```
+yourmod.zip
+├───.import
+└───mods-unpacked
+    └───Author-ModName
+        ├───mod_main.gd
+        └───manifest.json
+```
+
+Godot projects save a custom version of the assets in the root project directory in the `.import` directory. Also see [the ModLoader wiki](steam://openurl_external/https://steamcommunity.com/linkfilter/?u=https%3A%2F%2Fgithub.com%2FGodotModding%2Fgodot-mod-loader%2Fwiki%2FMod-Structure).
+In oder to create the required directory structure we have to copy our project files from this folder into our ZIP `.import` folder. This folder should only contain images from the mod.
+
+
+If possible, run the mod compilation script `compile_mod_steam_workshop.sh` with a terminal (Linux). This script createsan uploadable ZIP file.
+The script creates the required directory structure and removes some files which aren't neccesary for the upload to Steam.
+
