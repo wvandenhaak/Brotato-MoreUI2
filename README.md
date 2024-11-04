@@ -34,7 +34,7 @@ yourmod.zip
         └───manifest.json
 ```
 
-Godot projects save a custom version of the assets in the root project directory in the `.import` directory. Also see [the ModLoader wiki](steam://openurl_external/https://steamcommunity.com/linkfilter/?u=https%3A%2F%2Fgithub.com%2FGodotModding%2Fgodot-mod-loader%2Fwiki%2FMod-Structure).
+Godot projects save a custom version of the assets in the root project directory in the `.import` directory. Also see [the ModLoader wiki](https://github.com/GodotModding/godot-mod-loader/wiki/Mod-Structure).
 In oder to create the required directory structure we have to copy our project files from this folder into our ZIP `.import` folder. This folder should only contain images from the mod.
 
 
