@@ -35,9 +35,9 @@ yourmod.zip
 ```
 
 Godot projects save a custom version of the assets in the root project directory in the `.import` directory. Also see [the ModLoader wiki](https://github.com/GodotModding/godot-mod-loader/wiki/Mod-Structure).
-In oder to create the required directory structure we have to copy our project files from this folder into our ZIP `.import` folder. This folder should only contain images from the mod.
+In order to create the required directory structure we have to copy our project files from this folder into our ZIP `.import` folder. This folder should only contain images from the mod.
 
 
-If possible, run the mod compilation script `compile_mod_steam_workshop.sh` with a terminal (Linux). This script createsan uploadable ZIP file.
+If possible, run the mod compilation script `compile_mod_steam_workshop.sh` with a terminal (Linux). This script creates an uploadable ZIP file.
 The script creates the required directory structure and removes some files which aren't neccesary for the upload to Steam.
 
