@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/moreui_harvesting.png-d0959270b0d621ee9eae53ae780494d0.stex"
+path="res://.import/moreui_harvesting.png-411132f8523ee89550edfb584f597335.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_harvesting.png"
-dest_files=[ "res://.import/moreui_harvesting.png-d0959270b0d621ee9eae53ae780494d0.stex" ]
+source_file="res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_harvesting.png"
+dest_files=[ "res://.import/moreui_harvesting.png-411132f8523ee89550edfb584f597335.stex" ]
 
 [params]
 

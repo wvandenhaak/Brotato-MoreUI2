@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/moreui_dodge.png-bc0516091774aaa8fe633677b5ad9b7e.stex"
+path="res://.import/moreui_dodge.png-7888305e429897f351b75aa03409460e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_dodge.png"
-dest_files=[ "res://.import/moreui_dodge.png-bc0516091774aaa8fe633677b5ad9b7e.stex" ]
+source_file="res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_dodge.png"
+dest_files=[ "res://.import/moreui_dodge.png-7888305e429897f351b75aa03409460e.stex" ]
 
 [params]
 

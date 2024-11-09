@@ -3,7 +3,7 @@ extends "res://ui/menus/menus.gd"
 var _menu_more_ui_options
 
 func _ready():
-	_menu_more_ui_options = preload("res://mods-unpacked/MincedMeatMole-MoreUI/ui/menus/more_ui_menu.tscn").instance()
+	_menu_more_ui_options = preload("res://mods-unpacked/Mooncake-MoreUI2/ui/menus/more_ui_menu.tscn").instance()
 	_menu_more_ui_options.hide()
 	add_child(_menu_more_ui_options)
 	

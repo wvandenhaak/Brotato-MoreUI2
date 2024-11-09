@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/moreui_crit_chance.png-0e482419b5246b9656851b096bad911e.stex"
+path="res://.import/moreui_crit_chance.png-e7ed32b535a97545b35a68d73ca395d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_crit_chance.png"
-dest_files=[ "res://.import/moreui_crit_chance.png-0e482419b5246b9656851b096bad911e.stex" ]
+source_file="res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_crit_chance.png"
+dest_files=[ "res://.import/moreui_crit_chance.png-e7ed32b535a97545b35a68d73ca395d4.stex" ]
 
 [params]
 

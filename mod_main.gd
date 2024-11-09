@@ -1,12 +1,12 @@
 extends Node
 
-const MINCEDMEATMOLE_MOREUI_DIR = "MincedMeatMole-MoreUI/"
-const MINCEDMEATMOLE_MOREUI_LOG = "MincedMeatMole-MoreUI"
+const MOREUI_2_DIR = "Mooncake-MoreUI2/"
+const MOREUI_2_LOG = "Mooncake-MoreUI2"
 
 var dir = ""
 
 func _init(modLoader = ModLoaderMod):
-	dir = ModLoaderMod.get_unpacked_dir() + MINCEDMEATMOLE_MOREUI_DIR
+	dir = ModLoaderMod.get_unpacked_dir() + MOREUI_2_DIR
 
 	# Add interface
 	_add_child_class()

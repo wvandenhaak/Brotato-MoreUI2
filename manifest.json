@@ -1,14 +1,14 @@
 {
-	"name": "MoreUI",
-	"namespace": "MincedMeatMole",
-	"version_number": "1.1.4",
+	"name": "MoreUI2",
+	"namespace": "Mooncake",
+	"version_number": "2.0.0",
 	"description": "This Mod adds a UI displaying your Stats during a Wave",
-	"website_url": "https://github.com/JNBG/Brotato-MoreUI",
+	"website_url": "https://github.com/wvandenhaak/Brotato-MoreUI",
 	"dependencies": [],
 	"extra": {
 		"godot": {
 			"incompatibilities": [],
-			"authors": ["MincedMeatMole"],
+			"authors": ["MincedMeatMole", "Mooncake"],
 			"compatible_mod_loader_version": ["3.0.0"],
 			"compatible_game_version": ["0.6.1.6", "0.8.0.3"],
 			"config_defaults": {}

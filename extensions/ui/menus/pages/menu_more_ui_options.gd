@@ -15,7 +15,7 @@ onready var check_revamped_icons = $UseRevampedIcons
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var MoreUIConfigInterface = get_node("/root/ModLoader/MincedMeatMole-MoreUI/MoreUIConfigInterface")	
+	var MoreUIConfigInterface = get_node("/root/ModLoader/Mooncake-MoreUI2/MoreUIConfigInterface")	
 	
 	connect("more_ui_setting_changed", MoreUIConfigInterface, "on_more_ui_setting_changed")
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/moreui_ranged_damage.png-45d40b97e49107ba04579ad5bfa4e401.stex"
+path="res://.import/moreui_ranged_damage.png-768feb33579cfbbf73170d0192a79cc9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_ranged_damage.png"
-dest_files=[ "res://.import/moreui_ranged_damage.png-45d40b97e49107ba04579ad5bfa4e401.stex" ]
+source_file="res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_ranged_damage.png"
+dest_files=[ "res://.import/moreui_ranged_damage.png-768feb33579cfbbf73170d0192a79cc9.stex" ]
 
 [params]
 
