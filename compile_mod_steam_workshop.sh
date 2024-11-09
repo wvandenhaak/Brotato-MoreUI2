@@ -11,7 +11,7 @@ mkdir mod-compilation
 cp -r mods-unpacked mod-compilation
 
 rm -r mod-compilation/mods-unpacked/Mooncake-MoreUI2/MORE_UI_*
-rm -rf mod-compilation/Mooncake-MoreUI2/.git
+rm -rf mod-compilation/mods-unpacked/Mooncake-MoreUI2/.git
 rm mod-compilation/mods-unpacked/Mooncake-MoreUI2/README.md
 rm mod-compilation/mods-unpacked/Mooncake-MoreUI2/compile_mod_steam_workshop.sh
 
