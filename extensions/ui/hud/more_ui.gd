@@ -72,9 +72,13 @@ var inital_harvesting: int
 var inital_trees: int
 var min_trees: int
 var max_trees: int
-		
+
+var dlc_abyssal_terrors_enabled: bool
+
 func _ready()->void:
 	_more_ui_load_data()
+	_more_ui_load_dlc_data()
+	
 	var MoreUIConfigInterface = get_node("/root/ModLoader/Mooncake-MoreUI2/MoreUIConfigInterface")
 	MoreUIConfigInterface.connect("more_ui_setting_changed", self, "_on_more_ui_setting_changed")
 	if not "whats_new_mode_enabled" in more_ui_save_data:
@@ -169,7 +173,6 @@ func _ready()->void:
 		t.start()
 		yield(t, "timeout")
 		
-		initial_curse = floor(Utils.get_stat('stat_curse', player_index))
 		inital_max_hp = floor(Utils.get_stat('stat_max_hp', player_index))
 		inital_hp_regen = floor(Utils.get_stat('stat_hp_regeneration', player_index))
 		inital_lifesteal = floor(Utils.get_stat('stat_lifesteal', player_index))
@@ -187,6 +190,10 @@ func _ready()->void:
 		inital_luck = floor(Utils.get_stat('stat_luck', player_index))
 		inital_harvesting = floor(Utils.get_stat('stat_harvesting', player_index))
 		inital_trees = 0
+	
+		initial_curse = 0
+		if (dlc_abyssal_terrors_enabled == true):
+			initial_curse = floor(Utils.get_stat('stat_curse', player_index))
 	
 	_update_stats_ui()
 	
@@ -216,7 +223,6 @@ func _update_stats_ui():
 			more_ui_container.visible = false
 			return
 	
-	_update_single_field(curse_field, 'stat_curse', initial_curse, curse_field_control, player_index)
 	_update_single_field(hp_regen_field, 'stat_hp_regeneration', inital_hp_regen, hp_regen_field_control, player_index)
 	_update_single_field(lifesteal_field, 'stat_lifesteal', inital_lifesteal, lifesteal_field_control, player_index)
 	_update_single_field(damage_field,'stat_percent_damage', inital_damage, damage_field_control, player_index)
@@ -230,6 +236,11 @@ func _update_stats_ui():
 	_update_single_field(armor_field, 'stat_armor', inital_armor, armor_field_control, player_index)
 	_update_single_field(luck_field, 'stat_luck', inital_luck, luck_field_control, player_index)
 	_update_single_field(harvesting_field, 'stat_harvesting', inital_harvesting, harvesting_field_control, player_index)
+	
+	if (dlc_abyssal_terrors_enabled == true):
+		_update_single_field(curse_field, 'stat_curse', initial_curse, curse_field_control, player_index)
+	else:
+		curse_field_control.visible = false;
 	
 	if dodge_field != null:
 		var dodgeValue = floor(Utils.get_stat('stat_dodge', player_index))
@@ -554,3 +565,17 @@ func _align_ui_to_left():
 	_align_element_to_left(harvesting_field_control.get_node("VBoxContainer"))
 	_align_element_to_left(trees_field_control.get_node("VBoxContainer"))
 	
+func _more_ui_load_dlc_data():
+	var available_dlcs = get_node("/root/ProgressData").available_dlcs;
+	
+	dlc_abyssal_terrors_enabled = false;
+	
+	for dlc in available_dlcs:
+		if (dlc.my_id == 'abyssal_terrors'):
+			dlc_abyssal_terrors_enabled = true
+	
+	#for dlc in available_dlcs:
+		# If needed: retrieve individual stats for the DLC
+		#for stat in dlc.stats:
+			#if stat.stat_name == "stat_curse":
+				#do something
