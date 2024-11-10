@@ -23,6 +23,7 @@ This package is available in the [Steam Workshop](https://steamcommunity.com/sha
 
 ### Publishing / Compilation
 This mod follows the publishment steps for a ZIP-file mod from this [Steam Guide](https://steamcommunity.com/sharedfiles/filedetails/?id=2931079751).
+Also see the [Brotato Wiki](https://brotato.wiki.spellsandguns.com/Modding).
 
 One of the most important things is creating the required directory structure. 
 ```
