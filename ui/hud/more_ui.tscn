@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://mods-unpacked/Mooncake-MoreUI2/resources/fonts/actual/more_ui_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_lifesteal.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_crit_chance.png" type="Texture" id=16]
 [ext_resource path="res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_engineering.png" type="Texture" id=17]
 [ext_resource path="res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_trees.png" type="Texture" id=18]
+[ext_resource path="res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_curse.png" type="Texture" id=19]
 
 [node name="MoreUIPlaceHorizontal" type="HBoxContainer"]
 unique_name_in_owner = true
@@ -29,14 +30,52 @@ mouse_filter = 2
 
 [node name="MoreUIPlaceVertical" type="VBoxContainer" parent="."]
 margin_right = 40.0
-margin_bottom = 744.0
+margin_bottom = 788.0
 mouse_filter = 2
 alignment = 2
 
-[node name="MoreUI_MaxHPControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_CurseControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
 margin_right = 40.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_CurseControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_CurseControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 19 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_CurseControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_Curse" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_CurseControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="MoreUI_MaxHPControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
+margin_top = 44.0
+margin_right = 40.0
+margin_bottom = 84.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_MaxHPControl"]
@@ -72,9 +111,9 @@ fit_content_height = true
 
 [node name="MoreUI_HPRegenControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 44.0
+margin_top = 88.0
 margin_right = 40.0
-margin_bottom = 84.0
+margin_bottom = 128.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_HPRegenControl"]
@@ -110,9 +149,9 @@ fit_content_height = true
 
 [node name="MoreUI_LifeStealControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 88.0
+margin_top = 132.0
 margin_right = 40.0
-margin_bottom = 128.0
+margin_bottom = 172.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_LifeStealControl"]
@@ -148,9 +187,9 @@ fit_content_height = true
 
 [node name="MoreUI_DamageControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 132.0
+margin_top = 176.0
 margin_right = 40.0
-margin_bottom = 172.0
+margin_bottom = 216.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_DamageControl"]
@@ -186,9 +225,9 @@ fit_content_height = true
 
 [node name="MoreUI_MeleeDamageControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 176.0
+margin_top = 220.0
 margin_right = 40.0
-margin_bottom = 216.0
+margin_bottom = 260.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_MeleeDamageControl"]
@@ -224,9 +263,9 @@ fit_content_height = true
 
 [node name="MoreUI_RangedDamageControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 220.0
+margin_top = 264.0
 margin_right = 40.0
-margin_bottom = 260.0
+margin_bottom = 304.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_RangedDamageControl"]
@@ -262,9 +301,9 @@ fit_content_height = true
 
 [node name="MoreUI_ElementalDamageControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 264.0
+margin_top = 308.0
 margin_right = 40.0
-margin_bottom = 304.0
+margin_bottom = 348.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_ElementalDamageControl"]
@@ -300,9 +339,9 @@ fit_content_height = true
 
 [node name="MoreUI_AttackSpeedControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 308.0
+margin_top = 352.0
 margin_right = 40.0
-margin_bottom = 348.0
+margin_bottom = 392.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_AttackSpeedControl"]
@@ -338,9 +377,9 @@ fit_content_height = true
 
 [node name="MoreUI_CritChanceControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 352.0
+margin_top = 396.0
 margin_right = 40.0
-margin_bottom = 392.0
+margin_bottom = 436.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_CritChanceControl"]
@@ -376,9 +415,9 @@ fit_content_height = true
 
 [node name="MoreUI_EngineeringControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 396.0
+margin_top = 440.0
 margin_right = 40.0
-margin_bottom = 436.0
+margin_bottom = 480.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_EngineeringControl"]
@@ -414,9 +453,9 @@ fit_content_height = true
 
 [node name="MoreUI_RangeControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 440.0
+margin_top = 484.0
 margin_right = 40.0
-margin_bottom = 480.0
+margin_bottom = 524.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_RangeControl"]
@@ -452,9 +491,9 @@ fit_content_height = true
 
 [node name="MoreUI_ArmorControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 484.0
+margin_top = 528.0
 margin_right = 40.0
-margin_bottom = 524.0
+margin_bottom = 568.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_ArmorControl"]
@@ -490,9 +529,9 @@ fit_content_height = true
 
 [node name="MoreUI_DodgeControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 528.0
+margin_top = 572.0
 margin_right = 40.0
-margin_bottom = 568.0
+margin_bottom = 612.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_DodgeControl"]
@@ -528,9 +567,9 @@ fit_content_height = true
 
 [node name="MoreUI_SpeedControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 572.0
+margin_top = 616.0
 margin_right = 40.0
-margin_bottom = 612.0
+margin_bottom = 656.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_SpeedControl"]
@@ -566,9 +605,9 @@ fit_content_height = true
 
 [node name="MoreUI_LuckControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 616.0
+margin_top = 660.0
 margin_right = 40.0
-margin_bottom = 656.0
+margin_bottom = 700.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_LuckControl"]
@@ -604,9 +643,9 @@ fit_content_height = true
 
 [node name="MoreUI_HarvestingControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 660.0
+margin_top = 704.0
 margin_right = 40.0
-margin_bottom = 700.0
+margin_bottom = 744.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_HarvestingControl"]
@@ -642,9 +681,9 @@ fit_content_height = true
 
 [node name="MoreUI_TreeControl" type="Control" parent="MoreUIPlaceVertical"]
 unique_name_in_owner = true
-margin_top = 704.0
+margin_top = 748.0
 margin_right = 40.0
-margin_bottom = 744.0
+margin_bottom = 788.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_TreeControl"]

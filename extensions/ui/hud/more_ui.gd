@@ -14,6 +14,7 @@ var _revamped_icons = false
 var _value_prefix = ""
 var _value_suffix = ""
 
+var curse_field: RichTextLabel
 var max_hp_field: RichTextLabel
 var hp_regen_field: RichTextLabel
 var lifesteal_field: RichTextLabel
@@ -32,6 +33,7 @@ var luck_field: RichTextLabel
 var harvesting_field: RichTextLabel
 var trees_field: RichTextLabel
 
+var curse_field_control: Control
 var max_hp_field_control: Control
 var hp_regen_field_control: Control
 var lifesteal_field_control: Control
@@ -50,6 +52,7 @@ var luck_field_control: Control
 var harvesting_field_control: Control
 var trees_field_control: Control
 
+var initial_curse: int
 var inital_max_hp: int
 var inital_hp_regen: int
 var inital_lifesteal: int
@@ -94,6 +97,7 @@ func _ready()->void:
 	moreui_hud.call_deferred("add_child", more_ui_container)
 	moreui_hud.mouse_filter = MOUSE_FILTER_IGNORE
 	
+	curse_field = more_ui_container.get_node("%More_UI_Curse")
 	max_hp_field = more_ui_container.get_node("%More_UI_MaxHP")
 	hp_regen_field = more_ui_container.get_node("%More_UI_HP_Regen")
 	lifesteal_field = more_ui_container.get_node("%More_UI_LifeSteal")
@@ -112,6 +116,7 @@ func _ready()->void:
 	harvesting_field = more_ui_container.get_node("%More_UI_Harvesting")
 	trees_field = more_ui_container.get_node("%More_UI_Trees")
 
+	curse_field_control = more_ui_container.get_node("%MoreUI_CurseControl")
 	max_hp_field_control = more_ui_container.get_node("%MoreUI_MaxHPControl")
 	hp_regen_field_control = more_ui_container.get_node("%MoreUI_HPRegenControl")
 	lifesteal_field_control = more_ui_container.get_node("%MoreUI_LifeStealControl")
@@ -163,6 +168,8 @@ func _ready()->void:
 		self.add_child(t)
 		t.start()
 		yield(t, "timeout")
+		
+		initial_curse = floor(Utils.get_stat('stat_curse', player_index))
 		inital_max_hp = floor(Utils.get_stat('stat_max_hp', player_index))
 		inital_hp_regen = floor(Utils.get_stat('stat_hp_regeneration', player_index))
 		inital_lifesteal = floor(Utils.get_stat('stat_lifesteal', player_index))
@@ -209,6 +216,7 @@ func _update_stats_ui():
 			more_ui_container.visible = false
 			return
 	
+	_update_single_field(curse_field, 'stat_curse', initial_curse, curse_field_control, player_index)
 	_update_single_field(hp_regen_field, 'stat_hp_regeneration', inital_hp_regen, hp_regen_field_control, player_index)
 	_update_single_field(lifesteal_field, 'stat_lifesteal', inital_lifesteal, lifesteal_field_control, player_index)
 	_update_single_field(damage_field,'stat_percent_damage', inital_damage, damage_field_control, player_index)
@@ -353,6 +361,7 @@ func _set_revamped_icons(value:bool):
 	_revamped_icons = value
 	if (ModLoaderMod.is_mod_loaded('monoSDE-RevampedIcons')):
 		if (_revamped_icons):
+			var monoCurse = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/dlcs/dlc_1/upgrades/curse/monoSDE_curse.png")
 			var monoMaxHp = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/health/monoSDE_health.png")
 			var monoHpRegen = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/health_regeneration/monoSDE_health_regen.png")
 			var monoLifeSteal = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/lifesteal/monoSDE_lifesteal.png")
@@ -370,6 +379,8 @@ func _set_revamped_icons(value:bool):
 			var monoLuck = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/luck/monoSDE_consumable_drop_chance.png")
 			var monoHarvesting = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/harvesting/monoSDE_harvesting.png")
 			
+			if monoCurse != null:
+				curse_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoCurse
 			if monoMaxHp != null:
 				max_hp_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoMaxHp
 			if monoHpRegen != null:
@@ -403,6 +414,7 @@ func _set_revamped_icons(value:bool):
 			if monoHarvesting != null:
 				harvesting_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoHarvesting		
 		else:
+			curse_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_curse.png")
 			max_hp_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_max_hp.png")
 			hp_regen_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_hp_regeneration.png")
 			lifesteal_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/Mooncake-MoreUI2/ui/hud/moreui_lifesteal.png")
@@ -422,6 +434,8 @@ func _set_revamped_icons(value:bool):
 			
 
 func _toggle_control_visbility(onoff:bool):
+	if curse_field_control != null:
+		curse_field_control.visible = onoff
 	if max_hp_field_control != null:
 		max_hp_field_control.visible = onoff
 	if hp_regen_field_control != null:
@@ -497,6 +511,7 @@ func _align_ui_to_right():
 	more_ui_container.alignment = 2
 	_value_prefix = "[right]"
 	_value_suffix = "[/right]"
+	_align_element_to_right(curse_field_control.get_node("VBoxContainer"))
 	_align_element_to_right(max_hp_field_control.get_node("VBoxContainer"))
 	_align_element_to_right(hp_regen_field_control.get_node("VBoxContainer"))
 	_align_element_to_right(lifesteal_field_control.get_node("VBoxContainer"))
@@ -520,6 +535,7 @@ func _align_ui_to_left():
 	more_ui_container.alignment = 0
 	_value_prefix = ""
 	_value_suffix = ""
+	_align_element_to_left(curse_field_control.get_node("VBoxContainer"))
 	_align_element_to_left(max_hp_field_control.get_node("VBoxContainer"))
 	_align_element_to_left(hp_regen_field_control.get_node("VBoxContainer"))
 	_align_element_to_left(lifesteal_field_control.get_node("VBoxContainer"))
