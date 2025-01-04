@@ -10,6 +10,7 @@ var _whats_new_mode_enabled = false
 var _wave_increase_enabled = false
 var _right_side_enabled = false
 var _show_trees_enabled = false
+var _possible_chances_trees_calculated = false
 var _revamped_icons = false
 var _value_prefix = ""
 var _value_suffix = ""
@@ -70,6 +71,7 @@ var inital_speed: int
 var inital_luck: int
 var inital_harvesting: int
 var inital_trees: int
+
 var min_trees: int
 var max_trees: int
 
@@ -197,25 +199,28 @@ func _ready()->void:
 	
 	_update_stats_ui()
 	
-	var possible_chances = ceil(wave_timer.wait_time / 10) - 1
-	
-	var player_effect_trees =  RunData.get_player_effect('trees', player_index);
-
-	var min_nb = (1 + player_effect_trees)
-	var max_nb = (2 + player_effect_trees)
-
-	for i in possible_chances:
-		var min_total_chance:float = min_nb * 0.33
-		var max_total_chance:float = max_nb * 0.33
-		min_trees += floor(min_total_chance)
-		max_trees += floor(max_total_chance) + 1
-	
-	
 func _update_stats_ui():
 	# Todo: Build in support for games with multiple players?
 	var player_index = 0; # First player
 	
 	if wave_timer != null and is_instance_valid(wave_timer) and not is_run_lost:
+		
+		# Update possible chances for trees once (when wave_timer is available).
+		if _possible_chances_trees_calculated == false:
+			var player_effect_trees =  RunData.get_player_effect('trees', player_index);
+			var possible_tree_chances = ceil(wave_timer.wait_time / 10) - 1
+			
+			var min_nb = (1 + player_effect_trees)
+			var max_nb = (2 + player_effect_trees)
+
+			for i in possible_tree_chances:
+				var min_total_chance:float = min_nb * 0.33
+				var max_total_chance:float = max_nb * 0.33
+				min_trees += floor(min_total_chance)
+				max_trees += floor(max_total_chance) + 1
+				
+			_possible_chances_trees_calculated = true
+		
 		var time = ceil(wave_timer.time_left)
 		if time > 0:
 			more_ui_container.visible = true
@@ -300,9 +305,10 @@ func _update_stats_ui():
 			
 	if trees_field != null:
 		var treeValue = RunData.current_living_trees
-		if (max_trees != 0):
-			trees_field.bbcode_text = _value_prefix + "[color=#fff]" + str(treeValue) + "[/color] | ([color=#ff0000]" + str(min_trees) + "[/color] - [color=#00ff00]" + str(max_trees) + "[/color])" + _value_suffix
 		if (_show_trees_enabled):
+			if (max_trees != 0):
+				trees_field.bbcode_text = _value_prefix + "[color=#fff]" + str(treeValue) + "[/color] | ([color=#ff0000]" + str(min_trees) + "[/color] - [color=#00ff00]" + str(max_trees) + "[/color])" + _value_suffix
+
 			if (_whats_new_mode_enabled && treeValue != inital_trees):
 				trees_field_control.visible = true
 		
