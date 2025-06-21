@@ -203,7 +203,7 @@ func _update_stats_ui():
 	# Todo: Build in support for games with multiple players?
 	var player_index = 0; # First player
 	
-	if wave_timer != null and is_instance_valid(wave_timer) and not is_run_lost:
+	if wave_timer != null and is_instance_valid(wave_timer):
 		
 		# Update possible chances for trees once (when wave_timer is available).
 		if _possible_chances_trees_calculated == false:
