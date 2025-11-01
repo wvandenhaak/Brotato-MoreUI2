@@ -5,7 +5,9 @@ const MOREUI_2_LOG = "Mooncake-MoreUI2"
 
 var dir = ""
 
-func _init(modLoader = ModLoaderMod):
+func _init():
+	var ModLoaderMod = preload("res://addons/mod_loader/api/mod.gd").new();
+	
 	dir = ModLoaderMod.get_unpacked_dir() + MOREUI_2_DIR
 
 	# Add interface
