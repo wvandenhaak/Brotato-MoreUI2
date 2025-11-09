@@ -14,8 +14,6 @@ func _init():
 	_add_child_class()
 	
 	# Add Extensions
-	ModLoaderMod.install_script_extension(dir + "extensions/ui/menus/pages/menu_choose_options.gd")
-	ModLoaderMod.install_script_extension(dir + "extensions/ui/menus/menus.gd")	
 	ModLoaderMod.install_script_extension(dir + "extensions/ui/hud/more_ui.gd")
 
 	# Add localizations
