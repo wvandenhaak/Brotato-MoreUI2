@@ -5,7 +5,7 @@ const MORE_UI_SAVE_FILE = "user://mod_more_ui2.save"
 var more_ui_save_data  = {}
 var more_ui_container
 var _more_ui_timer = null
-var _whats_new_mode_enabled = false
+var _whats_new_mode_enabled = true
 var _wave_increase_enabled = true
 var _right_side_enabled = false
 var _show_trees_enabled = false
@@ -83,7 +83,7 @@ func _ready()->void:
 	var MoreUIConfigInterface = get_node("/root/ModLoader/Mooncake-MoreUI2/MoreUIConfigInterface")
 	MoreUIConfigInterface.connect("more_ui_setting_changed", self, "_on_more_ui_setting_changed")
 	if not "whats_new_mode_enabled" in more_ui_save_data:
-		more_ui_save_data.whats_new_mode_enabled = false
+		more_ui_save_data.whats_new_mode_enabled = true
 	if not "wave_increase_enabled" in more_ui_save_data:
 		more_ui_save_data.wave_increase_enabled = true
 	if not "right_side_enabled" in more_ui_save_data:
@@ -501,7 +501,7 @@ func _more_ui_load_data():
 	var file = File.new()
 	if not file.file_exists(MORE_UI_SAVE_FILE):
 		more_ui_save_data = {
-			"whats_new_mode_enabled": false,
+			"whats_new_mode_enabled": true,
 			"wave_increase_enabled": true,
 			"right_side_enabled": false,
 			"trees_enabled": false,
