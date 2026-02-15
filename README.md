@@ -10,11 +10,13 @@ The UI is updated every 0.5 Seconds.
 
 
 ## Features 
-Mod settings are available under Options on the main menu of the game.
+The following mod settings are available and can be changed by modifying a simple JSON-file (the UI for updating the mod settings ingame is broken since New Dawn update)
 - Enable "What's new Mode" to only show Stats that received an Update in the current wave.
 - Enable "Show Stat difference from Wave-Start" to show how much your Stats have changed in a wave
 - Enable "Align UI right" to move the UI to the right side of the Screen - Should be compatible with otDan's WaveTimer
 - Enable "Living Trees and (min - max) of Possible Spawns" to display how many Trees are currenty on the Map and how many trees can spawn at least or at most.
+
+The settings file is called `mod_more_ui2.json` and can generally be found in C:\Users\<username>\AppData\Roaming\Brotato. The file will be created after starting a round and changes can be done while doing a run (settings are reloaded on wave start)
 
 The Mod is now compatible with Monos' Revamped Icons - Credit for the Icons goes to Mono and a big thanks for letting me use them in MoreUI. To use the Icons you have to subscribe to his Mod and enable the Icons in the Options of MoreUI
 
