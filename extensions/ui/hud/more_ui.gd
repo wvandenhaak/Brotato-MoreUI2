@@ -1,7 +1,7 @@
 extends "res://ui/hud/ui_wave_timer.gd"
 
 onready var moreui_hud: MarginContainer = get_tree().get_current_scene().get_node("UI/HUD")
-const MORE_UI_SAVE_FILE = "user://mod_more_ui2.save"
+const MORE_UI_SAVE_FILE = "user://mod_more_ui2.json"
 var more_ui_save_data  = {}
 var more_ui_container
 var _more_ui_timer = null
@@ -82,14 +82,27 @@ func _ready()->void:
 	
 	var MoreUIConfigInterface = get_node("/root/ModLoader/Mooncake-MoreUI2/MoreUIConfigInterface")
 	MoreUIConfigInterface.connect("more_ui_setting_changed", self, "_on_more_ui_setting_changed")
+	
+	var more_ui_save_added_missing_option = false;
 	if not "whats_new_mode_enabled" in more_ui_save_data:
 		more_ui_save_data.whats_new_mode_enabled = true
+		more_ui_save_added_missing_option = true;
 	if not "wave_increase_enabled" in more_ui_save_data:
 		more_ui_save_data.wave_increase_enabled = true
+		more_ui_save_added_missing_option = true;
 	if not "right_side_enabled" in more_ui_save_data:
 		more_ui_save_data.right_side_enabled = false
+		more_ui_save_added_missing_option = true;
 	if not "trees_enabled" in more_ui_save_data:
 		more_ui_save_data.trees_enabled = false
+		more_ui_save_added_missing_option = true;
+	if not "revamped_icons" in more_ui_save_data:
+		more_ui_save_data.revamped_icons = false
+		more_ui_save_added_missing_option = true;
+	
+	if more_ui_save_added_missing_option:
+		_more_ui_save_data()
+
 	_whats_new_mode_enabled = more_ui_save_data.whats_new_mode_enabled
 	_wave_increase_enabled = more_ui_save_data.wave_increase_enabled
 	_right_side_enabled = more_ui_save_data.right_side_enabled
@@ -493,7 +506,7 @@ func _toggle_control_visbility(onoff:bool):
 func _more_ui_save_data():
 	var file = File.new()
 	file.open(MORE_UI_SAVE_FILE, File.WRITE)
-	file.store_var(more_ui_save_data)
+	file.store_string(to_json(more_ui_save_data))
 	file.close()
 
 
@@ -508,8 +521,9 @@ func _more_ui_load_data():
 			"revamped_icons": false
 		}
 		_more_ui_save_data()
+
 	file.open(MORE_UI_SAVE_FILE, File.READ)
-	more_ui_save_data = file.get_var()
+	more_ui_save_data = JSON.parse(file.get_as_text()).result
 	file.close()
 
 func _align_element_to_right(element):
