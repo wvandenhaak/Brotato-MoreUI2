@@ -174,27 +174,27 @@ func _ready()->void:
 		t.start()
 		yield(t, "timeout")
 		
-		inital_max_hp = floor(Utils.get_stat('stat_max_hp', player_index))
-		inital_hp_regen = floor(Utils.get_stat('stat_hp_regeneration', player_index))
-		inital_lifesteal = floor(Utils.get_stat('stat_lifesteal', player_index))
-		inital_damage = floor(Utils.get_stat('stat_percent_damage', player_index))
-		inital_melee_damage = floor(Utils.get_stat('stat_melee_damage', player_index))
-		inital_ranged_damage = floor(Utils.get_stat('stat_ranged_damage', player_index))
-		inital_elemental_damage = floor(Utils.get_stat('stat_elemental_damage', player_index))
-		inital_attack_speed = floor(Utils.get_stat('stat_attack_speed', player_index))
-		inital_crit_chance = floor(Utils.get_stat('stat_crit_chance', player_index))
-		inital_engineering = floor(Utils.get_stat('stat_engineering', player_index))
-		inital_range = floor(Utils.get_stat('stat_range', player_index))
-		inital_armor = floor(Utils.get_stat('stat_armor', player_index))
-		inital_dodge = floor(Utils.get_stat('stat_dodge', player_index))
-		inital_speed = floor(Utils.get_stat('stat_speed', player_index))
-		inital_luck = floor(Utils.get_stat('stat_luck', player_index))
-		inital_harvesting = floor(Utils.get_stat('stat_harvesting', player_index))
+		inital_max_hp = floor(Utils.get_stat(Keys.stat_max_hp_hash, player_index))
+		inital_hp_regen = floor(Utils.get_stat(Keys.stat_hp_regeneration_hash, player_index))
+		inital_lifesteal = floor(Utils.get_stat(Keys.stat_lifesteal_hash, player_index))
+		inital_damage = floor(Utils.get_stat(Keys.stat_percent_damage_hash, player_index))
+		inital_melee_damage = floor(Utils.get_stat(Keys.stat_melee_damage_hash, player_index))
+		inital_ranged_damage = floor(Utils.get_stat(Keys.stat_ranged_damage_hash, player_index))
+		inital_elemental_damage = floor(Utils.get_stat(Keys.stat_elemental_damage_hash, player_index))
+		inital_attack_speed = floor(Utils.get_stat(Keys.stat_attack_speed_hash, player_index))
+		inital_crit_chance = floor(Utils.get_stat(Keys.stat_crit_chance_hash, player_index))
+		inital_engineering = floor(Utils.get_stat(Keys.stat_engineering_hash, player_index))
+		inital_range = floor(Utils.get_stat(Keys.stat_range_hash, player_index))
+		inital_armor = floor(Utils.get_stat(Keys.stat_armor_hash, player_index))
+		inital_dodge = floor(Utils.get_stat(Keys.stat_dodge_hash, player_index))
+		inital_speed = floor(Utils.get_stat(Keys.stat_speed_hash, player_index))
+		inital_luck = floor(Utils.get_stat(Keys.stat_luck_hash, player_index))
+		inital_harvesting = floor(Utils.get_stat(Keys.stat_harvesting_hash, player_index))
 		inital_trees = 0
 	
 		initial_curse = 0
 		if (dlc_abyssal_terrors_enabled == true):
-			initial_curse = floor(Utils.get_stat('stat_curse', player_index))
+			initial_curse = floor(Utils.get_stat(Keys.stat_curse_hash, player_index))
 	
 	_update_stats_ui()
 	
@@ -206,7 +206,7 @@ func _update_stats_ui():
 		
 		# Update possible chances for trees once (when wave_timer is available).
 		if _possible_chances_trees_calculated == false:
-			var player_effect_trees =  RunData.get_player_effect('trees', player_index);
+			var player_effect_trees =  RunData.get_player_effect(Keys.trees_hash, player_index);
 			var possible_tree_chances = ceil(wave_timer.wait_time / 10) - 1
 			
 			var min_nb = (1 + player_effect_trees)
@@ -227,28 +227,28 @@ func _update_stats_ui():
 			more_ui_container.visible = false
 			return
 	
-	_update_single_field(hp_regen_field, 'stat_hp_regeneration', inital_hp_regen, hp_regen_field_control, player_index)
-	_update_single_field(lifesteal_field, 'stat_lifesteal', inital_lifesteal, lifesteal_field_control, player_index)
-	_update_single_field(damage_field,'stat_percent_damage', inital_damage, damage_field_control, player_index)
-	_update_single_field(melee_damage_field, 'stat_melee_damage', inital_melee_damage, melee_damage_field_control, player_index)
-	_update_single_field(ranged_damage_field, 'stat_ranged_damage', inital_ranged_damage, ranged_damage_field_control, player_index)
-	_update_single_field(elemental_damage_field, 'stat_elemental_damage', inital_elemental_damage, elemental_damage_field_control, player_index)
-	_update_single_field(attack_speed_field, 'stat_attack_speed', inital_attack_speed, attack_speed_field_control, player_index)
-	_update_single_field(crit_chance_field, 'stat_crit_chance', inital_crit_chance, crit_chance_field_control, player_index)
-	_update_single_field(engineering_field, 'stat_engineering', inital_engineering, engineering_field_control, player_index)
-	_update_single_field(range_field, 'stat_range', inital_range, range_field_control, player_index)
-	_update_single_field(armor_field, 'stat_armor', inital_armor, armor_field_control, player_index)
-	_update_single_field(luck_field, 'stat_luck', inital_luck, luck_field_control, player_index)
-	_update_single_field(harvesting_field, 'stat_harvesting', inital_harvesting, harvesting_field_control, player_index)
+	_update_single_field(hp_regen_field, Keys.stat_hp_regeneration_hash, inital_hp_regen, hp_regen_field_control, player_index)
+	_update_single_field(lifesteal_field, Keys.stat_lifesteal_hash, inital_lifesteal, lifesteal_field_control, player_index)
+	_update_single_field(damage_field,Keys.stat_percent_damage_hash, inital_damage, damage_field_control, player_index)
+	_update_single_field(melee_damage_field, Keys.stat_melee_damage_hash, inital_melee_damage, melee_damage_field_control, player_index)
+	_update_single_field(ranged_damage_field, Keys.stat_ranged_damage_hash, inital_ranged_damage, ranged_damage_field_control, player_index)
+	_update_single_field(elemental_damage_field, Keys.stat_elemental_damage_hash, inital_elemental_damage, elemental_damage_field_control, player_index)
+	_update_single_field(attack_speed_field, Keys.stat_attack_speed_hash, inital_attack_speed, attack_speed_field_control, player_index)
+	_update_single_field(crit_chance_field, Keys.stat_crit_chance_hash, inital_crit_chance, crit_chance_field_control, player_index)
+	_update_single_field(engineering_field, Keys.stat_engineering_hash, inital_engineering, engineering_field_control, player_index)
+	_update_single_field(range_field, Keys.stat_range_hash, inital_range, range_field_control, player_index)
+	_update_single_field(armor_field, Keys.stat_armor_hash, inital_armor, armor_field_control, player_index)
+	_update_single_field(luck_field, Keys.stat_luck_hash, inital_luck, luck_field_control, player_index)
+	_update_single_field(harvesting_field, Keys.stat_harvesting_hash, inital_harvesting, harvesting_field_control, player_index)
 	
 	if (dlc_abyssal_terrors_enabled == true):
-		_update_single_field(curse_field, 'stat_curse', initial_curse, curse_field_control, player_index)
+		_update_single_field(curse_field, Keys.stat_curse_hash, initial_curse, curse_field_control, player_index)
 	else:
 		curse_field_control.visible = false;
 	
 	if dodge_field != null:
-		var dodgeValue = floor(Utils.get_stat('stat_dodge', player_index))
-		var maxDodge = Utils.get_stat('dodge_cap', player_index) - 120
+		var dodgeValue = floor(Utils.get_stat(Keys.stat_dodge_hash, player_index))
+		var maxDodge = Utils.get_stat(Keys.stat_dodge_hash, player_index) - 120
 		var dodgeString = str(dodgeValue);
 		if (dodgeValue >= maxDodge):
 			dodgeString += ' | ' + str(maxDodge)
@@ -265,9 +265,9 @@ func _update_stats_ui():
 		if (_whats_new_mode_enabled && dodgeValue != inital_dodge):
 			dodge_field_control.visible = true
 	if max_hp_field != null:
-		var maxHPValue = floor(Utils.get_stat('stat_max_hp', player_index))
+		var maxHPValue = floor(Utils.get_stat(Keys.stat_max_hp_hash, player_index))
 		var maxHPString = str(maxHPValue);
-		var maxHPCap = Utils.get_stat('hp_cap', player_index);
+		var maxHPCap = Utils.get_stat(Keys.hp_cap_hash, player_index);
 		if (maxHPValue >= maxHPCap && maxHPCap != 999999):
 			maxHPString += ' | ' + str(maxHPCap)
 			
@@ -284,8 +284,8 @@ func _update_stats_ui():
 			max_hp_field_control.visible = true
 			
 	if speed_field != null:
-		var speedValue = floor(Utils.get_stat('stat_speed', player_index))
-		var maxSpeed = Utils.get_stat('speed_cap', player_index)
+		var speedValue = floor(Utils.get_stat(Keys.stat_speed_hash, player_index))
+		var maxSpeed = Utils.get_stat(Keys.speed_cap_hash, player_index)
 		var speedString = str(speedValue);
 		if (speedValue >= maxSpeed):
 			speedString += ' | ' + str(maxSpeed)
@@ -312,9 +312,9 @@ func _update_stats_ui():
 				trees_field_control.visible = true
 		
 
-func _update_single_field(field, stat_name, initial_value, control, player_index):
+func _update_single_field(field, stat_hash, initial_value, control, player_index):
 	if field != null:
-		var value = floor(Utils.get_stat(stat_name, player_index))
+		var value = floor(Utils.get_stat(stat_hash, player_index))
 		var output = str(value)
 		var change = value - initial_value;
 		if (_wave_increase_enabled and change != 0):
