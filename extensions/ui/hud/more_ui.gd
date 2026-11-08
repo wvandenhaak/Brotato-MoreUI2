@@ -15,6 +15,7 @@ var _value_prefix = ""
 var _value_suffix = ""
 
 var curse_field: RichTextLabel
+var evolution_field: RichTextLabel
 var max_hp_field: RichTextLabel
 var hp_regen_field: RichTextLabel
 var lifesteal_field: RichTextLabel
@@ -34,6 +35,7 @@ var harvesting_field: RichTextLabel
 var trees_field: RichTextLabel
 
 var curse_field_control: Control
+var evolution_field_control: Control
 var max_hp_field_control: Control
 var hp_regen_field_control: Control
 var lifesteal_field_control: Control
@@ -53,6 +55,7 @@ var harvesting_field_control: Control
 var trees_field_control: Control
 
 var initial_curse: int
+var initial_evolution: int
 var inital_max_hp: int
 var inital_hp_regen: int
 var inital_lifesteal: int
@@ -75,6 +78,12 @@ var min_trees: int
 var max_trees: int
 
 var dlc_abyssal_terrors_enabled: bool
+var dlc_primal_dread_enabled: bool
+
+# Primal Dread stat. Hash is generated here instead of using Keys.stat_evolution_hash,
+# so the mod still loads on game versions that predate the DLC.
+const EVOLUTION_ICON_PATH = "res://items/upgrades/evolution/evolution.png"
+var stat_evolution_hash: int = Keys.generate_hash("stat_evolution")
 
 func _ready()->void:
 	_more_ui_load_data()
@@ -116,6 +125,7 @@ func _ready()->void:
 	moreui_hud.mouse_filter = MOUSE_FILTER_IGNORE
 	
 	curse_field = more_ui_container.get_node("%More_UI_Curse")
+	evolution_field = more_ui_container.get_node("%More_UI_Evolution")
 	max_hp_field = more_ui_container.get_node("%More_UI_MaxHP")
 	hp_regen_field = more_ui_container.get_node("%More_UI_HP_Regen")
 	lifesteal_field = more_ui_container.get_node("%More_UI_LifeSteal")
@@ -135,6 +145,16 @@ func _ready()->void:
 	trees_field = more_ui_container.get_node("%More_UI_Trees")
 
 	curse_field_control = more_ui_container.get_node("%MoreUI_CurseControl")
+	evolution_field_control = more_ui_container.get_node("%MoreUI_EvolutionControl")
+
+	# Use the game's own Evolution icon (only exists on game versions with Primal Dread, Rvamp icons don't have an evolution icon).
+	if ResourceLoader.exists(EVOLUTION_ICON_PATH):
+		evolution_field_control.get_node("AspectRatioContainer/TextureRect").texture = load(EVOLUTION_ICON_PATH)
+	if not dlc_primal_dread_enabled:
+		evolution_field_control.visible = false
+	if not dlc_abyssal_terrors_enabled:
+		curse_field_control.visible = false
+
 	max_hp_field_control = more_ui_container.get_node("%MoreUI_MaxHPControl")
 	hp_regen_field_control = more_ui_container.get_node("%MoreUI_HPRegenControl")
 	lifesteal_field_control = more_ui_container.get_node("%MoreUI_LifeStealControl")
@@ -208,6 +228,10 @@ func _ready()->void:
 		initial_curse = 0
 		if (dlc_abyssal_terrors_enabled == true):
 			initial_curse = floor(Utils.get_stat(Keys.stat_curse_hash, player_index))
+
+		initial_evolution = 0
+		if (dlc_primal_dread_enabled == true):
+			initial_evolution = floor(Utils.get_stat(stat_evolution_hash, player_index))
 	
 	_update_stats_ui()
 	
@@ -258,6 +282,11 @@ func _update_stats_ui():
 		_update_single_field(curse_field, Keys.stat_curse_hash, initial_curse, curse_field_control, player_index)
 	else:
 		curse_field_control.visible = false;
+
+	if (dlc_primal_dread_enabled == true):
+		_update_single_field(evolution_field, stat_evolution_hash, initial_evolution, evolution_field_control, player_index, true)
+	else:
+		evolution_field_control.visible = false;
 	
 	if dodge_field != null:
 		var dodgeValue = floor(Utils.get_stat(Keys.stat_dodge_hash, player_index))
@@ -325,18 +354,19 @@ func _update_stats_ui():
 				trees_field_control.visible = true
 		
 
-func _update_single_field(field, stat_hash, initial_value, control, player_index):
+# neutral_colors: for stats where neither direction is good or bad (e.g. Evolution: + = meca, - = mutant)
+func _update_single_field(field, stat_hash, initial_value, control, player_index, neutral_colors = false):
 	if field != null:
 		var value = floor(Utils.get_stat(stat_hash, player_index))
 		var output = str(value)
 		var change = value - initial_value;
 		if (_wave_increase_enabled and change != 0):
-			output += " [color=" + _get_value_color(change) + "]("
+			output += " [color=" + ("#fff" if neutral_colors else _get_value_color(change)) + "]("
 			if (change > 0):
 				output += "+"
 			output += str(change)
 			output += ")[/color] "
-		field.bbcode_text = _value_prefix + "[color=" + _get_value_color(value) + "]" + output  + "[/color]" + _value_suffix
+		field.bbcode_text = _value_prefix + "[color=" + ("#fff" if neutral_colors else _get_value_color(value)) + "]" + output  + "[/color]" + _value_suffix
 		if (_whats_new_mode_enabled && value != initial_value):
 			control.visible = true
 
@@ -464,7 +494,9 @@ func _set_revamped_icons(value:bool):
 
 func _toggle_control_visbility(onoff:bool):
 	if curse_field_control != null:
-		curse_field_control.visible = onoff
+		curse_field_control.visible = onoff and dlc_abyssal_terrors_enabled
+	if evolution_field_control != null:
+		evolution_field_control.visible = onoff and dlc_primal_dread_enabled
 	if max_hp_field_control != null:
 		max_hp_field_control.visible = onoff
 	if hp_regen_field_control != null:
@@ -542,6 +574,7 @@ func _align_ui_to_right():
 	_value_prefix = "[right]"
 	_value_suffix = "[/right]"
 	_align_element_to_right(curse_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(evolution_field_control.get_node("VBoxContainer"))
 	_align_element_to_right(max_hp_field_control.get_node("VBoxContainer"))
 	_align_element_to_right(hp_regen_field_control.get_node("VBoxContainer"))
 	_align_element_to_right(lifesteal_field_control.get_node("VBoxContainer"))
@@ -566,6 +599,7 @@ func _align_ui_to_left():
 	_value_prefix = ""
 	_value_suffix = ""
 	_align_element_to_left(curse_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(evolution_field_control.get_node("VBoxContainer"))
 	_align_element_to_left(max_hp_field_control.get_node("VBoxContainer"))
 	_align_element_to_left(hp_regen_field_control.get_node("VBoxContainer"))
 	_align_element_to_left(lifesteal_field_control.get_node("VBoxContainer"))
@@ -585,13 +619,22 @@ func _align_ui_to_left():
 	_align_element_to_left(trees_field_control.get_node("VBoxContainer"))
 	
 func _more_ui_load_dlc_data():
-	var available_dlcs = get_node("/root/ProgressData").available_dlcs;
-	
+	var progress_data = get_node("/root/ProgressData")
+
 	dlc_abyssal_terrors_enabled = false;
-	
-	for dlc in available_dlcs:
-		if (dlc.my_id == 'abyssal_terrors'):
-			dlc_abyssal_terrors_enabled = true
+	dlc_primal_dread_enabled = false;
+
+	# Game 1.2+ (Primal Dread update) replaced `available_dlcs` (DLCData list) with
+	# `available_dlc_ids` and is_dlc_available(). Older versions only have `available_dlcs`.
+	if progress_data.has_method("is_dlc_available") and "available_dlc_ids" in progress_data:
+		dlc_abyssal_terrors_enabled = progress_data.is_dlc_available("abyssal_terrors")
+		dlc_primal_dread_enabled = progress_data.is_dlc_available("primal_dread")
+	elif "available_dlcs" in progress_data:
+		for dlc in progress_data.available_dlcs:
+			if (dlc.my_id == 'abyssal_terrors'):
+				dlc_abyssal_terrors_enabled = true
+			if (dlc.my_id == 'primal_dread'):
+				dlc_primal_dread_enabled = true
 	
 	#for dlc in available_dlcs:
 		# If needed: retrieve individual stats for the DLC
