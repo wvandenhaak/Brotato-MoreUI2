@@ -303,7 +303,7 @@ func _update_stats_ui():
 			dodgeString += str(change)
 			dodgeString += ")[/color] "
 			
-		dodge_field.bbcode_text = _value_prefix + "[color=" + _get_value_color(dodgeValue) + "]" + dodgeString + "[/color]" + _value_suffix
+		_set_field_text(dodge_field, _value_prefix + "[color=" + _get_value_color(dodgeValue) + "]" + dodgeString + "[/color]" + _value_suffix)
 		if (_whats_new_mode_enabled && dodgeValue != inital_dodge):
 			dodge_field_control.visible = true
 	if max_hp_field != null:
@@ -321,7 +321,7 @@ func _update_stats_ui():
 			maxHPString += str(change)
 			maxHPString += ")[/color] "
 			
-		max_hp_field.bbcode_text = _value_prefix + "[color=" + _get_value_color(maxHPValue) + "]" + maxHPString + "[/color]" + _value_suffix
+		_set_field_text(max_hp_field, _value_prefix + "[color=" + _get_value_color(maxHPValue) + "]" + maxHPString + "[/color]" + _value_suffix)
 		if (_whats_new_mode_enabled && maxHPValue != inital_max_hp):
 			max_hp_field_control.visible = true
 			
@@ -340,7 +340,7 @@ func _update_stats_ui():
 			speedString += str(change)
 			speedString += ")[/color] "
 			
-		speed_field.bbcode_text = _value_prefix + "[color=" + _get_value_color(speedValue) + "]" + speedString + "[/color]" + _value_suffix
+		_set_field_text(speed_field, _value_prefix + "[color=" + _get_value_color(speedValue) + "]" + speedString + "[/color]" + _value_suffix)
 		if (_whats_new_mode_enabled && speedValue != inital_speed):
 			speed_field_control.visible = true
 			
@@ -348,7 +348,7 @@ func _update_stats_ui():
 		var treeValue = RunData.current_living_trees
 		if (_show_trees_enabled):
 			if (max_trees != 0):
-				trees_field.bbcode_text = _value_prefix + "[color=#fff]" + str(treeValue) + "[/color] | ([color=#ff0000]" + str(min_trees) + "[/color] - [color=#00ff00]" + str(max_trees) + "[/color])" + _value_suffix
+				_set_field_text(trees_field, _value_prefix + "[color=#fff]" + str(treeValue) + "[/color] | ([color=#ff0000]" + str(min_trees) + "[/color] - [color=#00ff00]" + str(max_trees) + "[/color])" + _value_suffix)
 
 			if (_whats_new_mode_enabled && treeValue != inital_trees):
 				trees_field_control.visible = true
@@ -366,9 +366,15 @@ func _update_single_field(field, stat_hash, initial_value, control, player_index
 				output += "+"
 			output += str(change)
 			output += ")[/color] "
-		field.bbcode_text = _value_prefix + "[color=" + ("#fff" if neutral_colors else _get_value_color(value)) + "]" + output  + "[/color]" + _value_suffix
+		_set_field_text(field, _value_prefix + "[color=" + ("#fff" if neutral_colors else _get_value_color(value)) + "]" + output  + "[/color]" + _value_suffix)
 		if (_whats_new_mode_enabled && value != initial_value):
 			control.visible = true
+
+# Only assign new text when it differs: setting bbcode_text makes the RichTextLabel
+# re-parse the BBCode and redo its layout, even if the text is identical.
+func _set_field_text(field: RichTextLabel, text: String):
+	if field.bbcode_text != text:
+		field.bbcode_text = text
 
 func _get_value_color(value):
 	if (value > 0):
