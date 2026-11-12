@@ -261,7 +261,12 @@ func _update_stats_ui():
 		if time > 0:
 			more_ui_container.visible = true
 		else:
+			# Wave is over: the game stops its wave timer once and then loads the shop,
+			# and a new HUD (with a new update timer) is built for the next wave.
+			# So there is nothing left to update; stop our timer and hide the UI.
 			more_ui_container.visible = false
+			if _more_ui_timer != null:
+				_more_ui_timer.stop()
 			return
 	
 	_update_single_field(hp_regen_field, Keys.stat_hp_regeneration_hash, inital_hp_regen, hp_regen_field_control, player_index)
