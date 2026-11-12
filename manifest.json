@@ -10,7 +10,7 @@
 			"incompatibilities": [],
 			"authors": ["MincedMeatMole", "Mooncake"],
 			"compatible_mod_loader_version": ["3.0.0"],
-			"compatible_game_version": ["0.6.1.6", "0.8.0.3"],
+			"compatible_game_version": [],
 			"config_defaults": {}
 		}
 	}
