@@ -290,9 +290,9 @@ func _update_stats_ui():
 	
 	if dodge_field != null:
 		var dodgeValue = floor(Utils.get_stat(Keys.stat_dodge_hash, player_index))
-		var maxDodge = Utils.get_stat(Keys.stat_dodge_hash, player_index) - 120
+		var maxDodge = int(RunData.get_player_effect(Keys.dodge_cap_hash, player_index))
 		var dodgeString = str(dodgeValue);
-		if (dodgeValue >= maxDodge):
+		if (dodgeValue >= maxDodge or maxDodge < 60):
 			dodgeString += ' | ' + str(maxDodge)
 			
 		var change = dodgeValue - inital_dodge
